@@ -6,6 +6,21 @@ import stickerGif from "./assets/sticker.gif";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+// Добавим вспомогательные функции для генерации случайных значений
+const generateRandomTelegramId = () => {
+  // Telegram ID обычно 8-10 значный номер
+  return Math.floor(Math.random() * 9000000000) + 1000000000;
+};
+
+const generateRandomUsername = () => {
+  const adjectives = ['Happy', 'Clever', 'Funny', 'Smart', 'Cool'];
+  const nouns = ['Monkey', 'Panda', 'Tiger', 'Lion', 'Bear'];
+  const number = Math.floor(Math.random() * 1000);
+  
+  return `${adjectives[Math.floor(Math.random() * adjectives.length)]}${
+    nouns[Math.floor(Math.random() * nouns.length)]}${number}`;
+};
+
 function MainPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -20,8 +35,8 @@ function MainPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          telegramId: 123456789,
-          username: "testUser",
+          telegramId: generateRandomTelegramId(),
+          username: generateRandomUsername(),
         }),
       });
 
