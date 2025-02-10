@@ -6,5 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 80,
-  }
+  },
+  preview: {
+    allowedHosts: ['rush-up-frontend-production.up.railway.app'],
+  },
 })
+
