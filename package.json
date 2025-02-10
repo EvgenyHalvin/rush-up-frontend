@@ -7,8 +7,8 @@
     "dev": "vite --port 3000",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "vite preview --port $PORT",
+    "preview": "tsc -b && vite build &&vite preview",
+    "start": "vite preview --port $PORT --host",
     "tsc": "tsc --noEmit"
   },
   "dependencies": {
