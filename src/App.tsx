@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 import stickerGif from "./assets/sticker.gif";
-import { init } from "@telegram-apps/sdk";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -89,7 +88,6 @@ function App() {
 
   useEffect(() => {
     if (window.Telegram?.WebApp) {
-      init();
       const app = window.Telegram.WebApp;
       app.ready();
       app.expand();
