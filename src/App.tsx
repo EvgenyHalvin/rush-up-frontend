@@ -13,12 +13,13 @@ const generateRandomTelegramId = () => {
 };
 
 const generateRandomUsername = () => {
-  const adjectives = ['Happy', 'Clever', 'Funny', 'Smart', 'Cool'];
-  const nouns = ['Monkey', 'Panda', 'Tiger', 'Lion', 'Bear'];
+  const adjectives = ["Happy", "Clever", "Funny", "Smart", "Cool"];
+  const nouns = ["Monkey", "Panda", "Tiger", "Lion", "Bear"];
   const number = Math.floor(Math.random() * 1000);
-  
+
   return `${adjectives[Math.floor(Math.random() * adjectives.length)]}${
-    nouns[Math.floor(Math.random() * nouns.length)]}${number}`;
+    nouns[Math.floor(Math.random() * nouns.length)]
+  }${number}`;
 };
 
 function MainPage() {
@@ -52,6 +53,18 @@ function MainPage() {
     }
   };
 
+  if (!window.Telegram?.WebApp) {
+    return (
+      <div style={{ textAlign: "center", padding: "20px" }}>
+        <h2>🚀 Доступно только в Telegram</h2>
+        <p>Откройте это приложение через Telegram Mini Apps.</p>
+        <button onClick={() => window.open("https://t.me/rushupBot", "_blank")}>
+          Открыть в telegram
+        </button>
+      </div>
+    );
+  }
+
   if (isSuccess) {
     return (
       <div>
@@ -70,7 +83,11 @@ function MainPage() {
   return (
     <div>
       <h1>Вы любите спать и кушать?</h1>
-      <button onClick={sendUserDataHandler} className="button" disabled={isLoading}>
+      <button
+        onClick={sendUserDataHandler}
+        className="button"
+        disabled={isLoading}
+      >
         {isLoading ? "Отправляем ответ..." : "Да"}
         {isLoading && <div className="button-spinner" />}
       </button>
