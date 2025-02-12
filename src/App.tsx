@@ -88,8 +88,8 @@ function App() {
   const [isTelegram, setIsTelegram] = useState(false);
 
   useEffect(() => {
-    init();
     if (window.Telegram?.WebApp) {
+      init();
       const app = window.Telegram.WebApp;
       app.ready();
       app.expand();
