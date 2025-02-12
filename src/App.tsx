@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
@@ -53,18 +53,6 @@ function MainPage() {
     }
   };
 
-  if (!window.Telegram?.WebApp) {
-    return (
-      <div style={{ textAlign: "center", padding: "20px" }}>
-        <h2>🚀 Доступно только в Telegram</h2>
-        <p>Откройте это приложение через Telegram Mini Apps.</p>
-        <button onClick={() => window.open("https://t.me/rushupBot", "_blank")}>
-          Открыть в telegram
-        </button>
-      </div>
-    );
-  }
-
   if (isSuccess) {
     return (
       <div>
@@ -96,6 +84,27 @@ function MainPage() {
 }
 
 function App() {
+  const [isTelegram, setIsTelegram] = useState(false);
+
+  useEffect(() => {
+    if (window.Telegram?.WebApp) {
+      window.Telegram.WebApp.expand();
+      setIsTelegram(true);
+    }
+  }, []);
+
+  if (!isTelegram) {
+    return (
+      <div style={{ textAlign: "center", padding: "20px" }}>
+        <h2>🚀 Доступно только в Telegram</h2>
+        <p>Откройте это приложение через Telegram Mini Apps.</p>
+        <button onClick={() => window.open("https://t.me/rushupBot", "_blank")}>
+          Открыть в telegram
+        </button>
+      </div>
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
