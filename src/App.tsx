@@ -87,7 +87,6 @@ function App() {
   const [isTelegram, setIsTelegram] = useState(false);
 
   useEffect(() => {
-    console.log(window.Telegram);
     if (window.Telegram?.WebApp) {
       window.Telegram.WebApp.expand();
       setIsTelegram(true);
